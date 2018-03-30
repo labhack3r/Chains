@@ -237,17 +237,16 @@ cd /var/www/html	# Changing current directory to web server's root directory
 git clone https://github.com/labhack3r/VoteApp.git
 
 # Configuring Apps
-sudo sed -ie 's/$CHAIN_NAME =.*;/$CHAIN_NAME = "'$chainname'";/g' /var/www/html/apps/config.php
-sudo sed -ie 's/RPC_USER =.*;/RPC_USER = "'$rpcuser'";/g' /var/www/html/apps/config.php
-sudo sed -ie 's/RPC_PASSWORD =.*;/RPC_PASSWORD = "'$rpcpassword'";/g' /var/www/html/apps/config.php
-sudo sed -ie 's/RPC_PORT =.*;/RPC_PORT = "'$rpcport'";/g' /var/www/html/apps/config.php
-sudo sed -ie 's/MANAGER_ADDRESS =.*;/MANAGER_ADDRESS = "'$addr'";/g' /var/www/html/apps/config.php
+sudo sed -ie 's/$CHAIN_NAME =.*;/$CHAIN_NAME = "'$chainname'";/g' /var/www/html/VoteApp/config.php
+sudo sed -ie 's/RPC_USER =.*;/RPC_USER = "'$rpcuser'";/g' /var/www/html/VoteApp/config.php
+sudo sed -ie 's/RPC_PASSWORD =.*;/RPC_PASSWORD = "'$rpcpassword'";/g' /var/www/html/VoteApp/config.php
+sudo sed -ie 's/RPC_PORT =.*;/RPC_PORT = "'$rpcport'";/g' /var/www/html/VoteApp/config.php
+sudo sed -ie 's/MANAGER_ADDRESS =.*;/MANAGER_ADDRESS = "'$addr'";/g' /var/www/html/VoteApp/config.php
 
 
 ###
 ## INSTALLING & CONFIGURING MULTICHAIN WEB DEMO
 ###
-cd /var/www/html/private
 git clone https://github.com/MultiChain/multichain-web-demo.git
 
 # Configuring Web Demo
