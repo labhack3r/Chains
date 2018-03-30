@@ -89,7 +89,7 @@ su -l $username -c "sed -ie 's/.*anyone-can-connect =.*\#/anyone-can-connect = t
 su -l $username -c "sed -ie 's/.*anyone-can-send =.*\#/anyone-can-send = true     #/g' /home/"$username"/.multichain/$chainname/params.dat"
 su -l $username -c "sed -ie 's/.*allow-p2sh-outputs =.*\#/allow-p2sh-outputs = false     #/g' /home/"$username"/.multichain/$chainname/params.dat"
 su -l $username -c "sed -ie 's/.*allow-multisig-outputs =.*\#/allow-multisig-outputs = false     #/g' /home/"$username"/.multichain/$chainname/params.dat"
-su -l $username -c "sed -ie 's/.*setup-first-blocks =.*\#/setup-first-blocks = -1     #/g' /home/"$username"/.multichain/$chainname/params.dat"
+su -l $username -c "sed -ie 's/.*setup-first-blocks =.*\#/setup-first-blocks = 10000     #/g' /home/"$username"/.multichain/$chainname/params.dat"
 
 # original chain params
 su -l $username -c "sed -ie 's/.*root-stream-open =.*\#/root-stream-open = false     #/g' /home/"$username"/.multichain/$chainname/params.dat"
