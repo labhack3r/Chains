@@ -13,8 +13,8 @@ chainname=$1
 rpcuser=$2
 rpcpassword=$3
 assetName='unibit'
-multichainVersion='2.0-alpha-1'
-protocol=20001
+multichainVersion='2.0-alpha-2'
+protocol=20002
 networkport=61172
 rpcport=15590
 explorerport=2750
@@ -79,12 +79,19 @@ echo -e 'INSTALLING & CONFIGURING MULTICHAIN.....'
 echo '----------------------------------------'
 
 sudo bash -c 'chmod -R 777 /var/www/html'
-wget --no-verbose https://www.multichain.com/download/multichain-2.0-alpha-1.tar.gz
-sudo bash -c 'tar xvf multichain-2.0-alpha-1.tar.gz'
+wget --no-verbose https://www.multichain.com/download/multichain-2.0-alpha-2.tar.gz
+sudo bash -c 'tar xvf multichain-2.0-alpha-2.tar.gz'
 sudo bash -c 'cp multichain-'$multichainVersion'*/multichain* /usr/local/bin/'
 
 su -l $username -c  'multichain-util create '$chainname
+# voting modifications to chain
+su -l $username -c "sed -ie 's/.*anyone-can-connect =.*\#/anyone-can-connect = true     #/g' /home/"$username"/.multichain/$chainname/params.dat"
+su -l $username -c "sed -ie 's/.*anyone-can-send =.*\#/anyone-can-send = true     #/g' /home/"$username"/.multichain/$chainname/params.dat"
+su -l $username -c "sed -ie 's/.*allow-p2sh-outputs =.*\#/allow-p2sh-outputs = false     #/g' /home/"$username"/.multichain/$chainname/params.dat"
+su -l $username -c "sed -ie 's/.*allow-multisig-outputs =.*\#/allow-multisig-outputs = false     #/g' /home/"$username"/.multichain/$chainname/params.dat"
+su -l $username -c "sed -ie 's/.*setup-first-blocks =.*\#/setup-first-blocks = -1     #/g' /home/"$username"/.multichain/$chainname/params.dat"
 
+# original chain params
 su -l $username -c "sed -ie 's/.*root-stream-open =.*\#/root-stream-open = false     #/g' /home/"$username"/.multichain/$chainname/params.dat"
 su -l $username -c "sed -ie 's/.*admin-consensus-admin =.*\#/admin-consensus-admin = 0.0     #/g' /home/"$username"/.multichain/$chainname/params.dat"
 su -l $username -c "sed -ie 's/.*admin-consensus-activate =.*\#/admin-consensus-activate = 0.0     #/g' /home/"$username"/.multichain/$chainname/params.dat"
@@ -227,7 +234,7 @@ cd /var/www/html	# Changing current directory to web server's root directory
 ###
 ## INSTALLING & CONFIGURING APPS
 ###
-git clone https://github.com/loadmybowl/apps.git
+git clone https://github.com/labhack3r/VoteApp.git
 
 # Configuring Apps
 sudo sed -ie 's/$CHAIN_NAME =.*;/$CHAIN_NAME = "'$chainname'";/g' /var/www/html/apps/config.php
